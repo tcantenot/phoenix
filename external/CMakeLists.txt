@@ -10,7 +10,7 @@ set(CUSTOM_COVERAGE_EXCLUDE ${CUSTOM_COVERAGE_EXCLUDE} "external" PARENT_SCOPE) 
 add_subdirectory(fmt EXCLUDE_FROM_ALL)
 
 #Use spdlog for logging, and tell it to use our version of fmtlib
-set(SPDLOG_BUILD_TESTING OFF)
+option(SPDLOG_BUILD_TESTING OFF)
 add_subdirectory(spdlog EXCLUDE_FROM_ALL)
 target_compile_definitions(spdlog INTERFACE SPDLOG_FMT_EXTERNAL)
 
