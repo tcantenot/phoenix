@@ -12,7 +12,7 @@ env:
 matrix:
   include:
   
-    # Coverage
+    # gcc Debug & Coverage
     - os: linux
       compiler: gcc
       addons:
@@ -41,13 +41,27 @@ matrix:
     # clang Debug
     - os: linux
       compiler: clang
-      addons: {apt: {packages: [clang-3.9,llvm-3.9-dev,libstdc++-6-dev] , sources: [ubuntu-toolchain-r-test,llvm-toolchain-precise-3.9]}}
+      addons:
+        apt:
+          packages:
+            - [clang-3.9,llvm-3.9-dev,libstdc++-6-dev]
+            - [libxrandr-dev, libxinerama-dev, libxcursor-dev, libxi-dev]
+          sources:
+            - [ubuntu-toolchain-r-test,llvm-toolchain-precise-3.9]
+            - kubuntu-backports
       env: BUILD_TYPE=Debug COMPILER_VER=3.9
 
     # clang Release
     - os: linux
       compiler: clang
-      addons: {apt: {packages: [clang-3.9,llvm-3.9-dev,libstdc++-6-dev] , sources: [ubuntu-toolchain-r-test,llvm-toolchain-precise-3.9]}}
+      addons:
+        apt:
+          packages:
+            - [clang-3.9,llvm-3.9-dev,libstdc++-6-dev]
+            - [libxrandr-dev, libxinerama-dev, libxcursor-dev, libxi-dev]
+          sources:
+            - [ubuntu-toolchain-r-test,llvm-toolchain-precise-3.9]
+            - kubuntu-backports
       env: BUILD_TYPE=Release COMPILER_VER=3.9
 
 

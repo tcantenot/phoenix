@@ -5,11 +5,7 @@
 
 #include <fmt/format.h>
 
-#pragma warning(push)
-#pragma warning(disable : 4201) // Nameless struct/union
-#pragma warning(disable : 4309) // "static_cast": truncation of constant value
-#pragma warning(disable : 4458) // Name hiding
-#pragma warning(disable : 4100) // Unreferenced formal parameter
+#pragma warning(push, 0)
 #include <gli/gli.hpp>
 #pragma warning(pop)
 
