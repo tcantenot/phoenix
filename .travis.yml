@@ -4,17 +4,6 @@ language: cpp
 
 os:
   - osx
-  
-addons:
-  apt:
-      sources:
-          - kubuntu-backports
-      packages:
-          - libxrandr-dev
-          - libxinerama-dev
-          - libxcursor-dev
-          - libxi-dev
-          - xorg-dev
 
 env:
   - BUILD_TYPE=Debug
@@ -28,7 +17,10 @@ matrix:
       env: BUILD_TYPE=Coverage COMPILER_VER=6
     - os: linux
       compiler: gcc
-      addons: {apt: {packages: [g++-6] , sources: [ubuntu-toolchain-r-test]}}
+      addons:
+        apt:
+          packages: [g++-6, libxrandr-dev, libxinerama-dev, libxcursor-dev, libxi-dev]
+          sources: [ubuntu-toolchain-r-test, kubuntu-backports]
       env: BUILD_TYPE=Release COMPILER_VER=6
     - os: linux
       compiler: clang
