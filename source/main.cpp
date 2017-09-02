@@ -10,10 +10,10 @@
 #define DIAG_JOINSTR(x,y) DIAG_STR(x ## y)
 
 #ifdef _MSC_VER
-#define DIAG_DO_PRAGMA(x) __pragma (#x)
+#define DIAG_DO_PRAGMA(x) __pragma(x)
 #define DIAG_PRAGMA(compiler,x) DIAG_DO_PRAGMA(warning(x))
 #else
-#define DIAG_DO_PRAGMA(x) _Pragma (#x)
+#define DIAG_DO_PRAGMA(x) _Pragma(#x)
 #define DIAG_PRAGMA(compiler,x) DIAG_DO_PRAGMA(compiler diagnostic x)
 #endif
 
@@ -30,15 +30,15 @@
 	#define DISABLE_WARNING_MSVC(x)
 	#define ENABLE_WARNING_MSVC(x)
 #elif defined(__clang__)
-	#define ENABLE_WARNING_CLANG(clang_option) DIAG_PRAGMA(clang,push) DIAG_PRAGMA(clang,ignored DIAG_JOINSTR(-W,clang_option))
-	#define ENABLE_WARNING_CLANG(clang_option) DIAG_PRAGMA(clang,pop)
+	#define DISABLE_WARNING_CLANG(clang_option) DIAG_PRAGMA(clang,push) DIAG_PRAGMA(clang,ignored DIAG_JOINSTR(-W,clang_option))
+	#define ENABLE_WARNING_CLANG(clang_option)  DIAG_PRAGMA(clang,pop)
 	#define DISABLE_WARNING_GCC(x)
 	#define ENABLE_WARNING_GCC(x)
 	#define DISABLE_WARNING_MSVC(x)
 	#define ENABLE_WARNING_MSVC(x)
 #elif defined(_MSC_VER)
-	#define ENABLE_WARNING_MSVC(msvc_errorcode)  DIAG_PRAGMA(msvc,push) DIAG_DO_PRAGMA(warning(disable:##msvc_errorcode))
-	#define DISABLE_WARNING_MSVC(msvc_errorcode) DIAG_PRAGMA(msvc,pop)
+	#define DISABLE_WARNING_MSVC(msvc_errorcode)  DIAG_PRAGMA(msvc,push) DIAG_DO_PRAGMA(warning(disable:##msvc_errorcode))
+	#define ENABLE_WARNING_MSVC(msvc_errorcode) DIAG_PRAGMA(msvc,pop)
 	#define DISABLE_WARNING_GCC(x)
 	#define ENABLE_WARNING_GCC(x)
 	#define DISABLE_WARNING_CLANG(x)
@@ -52,13 +52,9 @@
 	#define DISABLE_WARNING(gcc_unused,clang_option,msvc_unused) DISABLE_WARNING_CLANG(clang_option)
 	#define ENABLE_WARNING(gcc_unused,clang_option,msvc_unused)  ENABLE_WARNING_CLANG(clang_option)
 #elif defined(_MSC_VER)
-	#define DISABLE_WARNING(gcc_unused,clang_unused,msvc_errorcode) DISABLE_WARNING_MSVC(msvc_errorcode)
+	#define DISABLE_WARNING(gcc_unused,clang_unused,msvc_errorcode) DIAG_PRAGMA(msvc,push) DIAG_DO_PRAGMA(warning(disable:##msvc_errorcode))
 	#define ENABLE_WARNING(gcc_unused,clang_unused,msvc_errorcode)  ENABLE_WARNING_MSVC(msvc_errorcode)
 #endif
-
-DISABLE_WARNING(ignored-qualifiers, ignored-qualifiers, 0)
-DISABLE_WARNING(sign-conversion, sign-conversion, 0)
-DISABLE_WARNING(sign-conversion, sign-conversion, 0)
 
 DISABLE_WARNING_MSVC(4201) // Nameless struct/union
 DISABLE_WARNING_MSVC(4309) // 'static_cast': truncation of constant value
@@ -76,19 +72,20 @@ DISABLE_WARNING_CLANG(shadow)
 
 #include <gli/gli.hpp>
 
-ENABLE_WARNING_MSVC(4201) // Nameless struct/union
-ENABLE_WARNING_MSVC(4309) // 'static_cast': truncation of constant value
-ENABLE_WARNING_MSVC(4458) // Declaration of 'x' hides class member
-ENABLE_WARNING_MSVC(4100) // Unreferenced formal parameter
-
-ENABLE_WARNING_GCC(pedantic)
-ENABLE_WARNING_GCC(ignored-qualifiers)
-ENABLE_WARNING_GCC(type-limits)
-
-ENABLE_WARNING_CLANG(sign-conversion)
-ENABLE_WARNING_CLANG(ignored-qualifiers)
-ENABLE_WARNING_CLANG(shadow-field-in-constructor)
 ENABLE_WARNING_CLANG(shadow)
+ENABLE_WARNING_CLANG(shadow-field-in-constructor)
+ENABLE_WARNING_CLANG(ignored-qualifiers)
+ENABLE_WARNING_CLANG(sign-conversion)
+
+ENABLE_WARNING_GCC(type-limits)
+ENABLE_WARNING_GCC(ignored-qualifiers)
+ENABLE_WARNING_GCC(pedantic)
+
+ENABLE_WARNING_MSVC(4100) // Unreferenced formal parameter
+ENABLE_WARNING_MSVC(4458) // Declaration of 'x' hides class member
+ENABLE_WARNING_MSVC(4309) // 'static_cast': truncation of constant value
+ENABLE_WARNING_MSVC(4201) // Nameless struct/union
+
 
 // This should be in the headers
 
