@@ -138,6 +138,7 @@ add_library(px::foo ALIAS px_foo)
 #==================#
 
 
+if(0)
 set(GL3EX_SOURCE_FILES source/opengl3_example/main.cpp source/opengl3_example/imgui_impl_glfw_gl3.cpp)
 set(GL3EX_INCLUDE_FILES source/opengl3_example/imgui_impl_glfw_gl3.h)
 
@@ -157,7 +158,7 @@ target_link_libraries(phoenix_gl3ex
 target_set_warnings(phoenix_gl3ex ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Helper that can set default warning flags for you
 target_enable_lto(phoenix_gl3ex optimized) #enable lto if available for non-debug configurations
 run_fixup(phoenix_gl3ex "" "") # Copy dependencies next to the executable (DLLs for example)
-
+endif()
 
 #===========#
 #   Tests   #
