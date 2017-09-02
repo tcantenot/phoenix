@@ -62,6 +62,7 @@ DISABLE_WARNING_MSVC(4458) // Declaration of 'x' hides class member
 DISABLE_WARNING_MSVC(4100) // Unreferenced formal parameter
 
 DISABLE_WARNING_GCC(pedantic)
+DISABLE_WARNING_GCC(unused-parameter)
 DISABLE_WARNING_GCC(ignored-qualifiers)
 DISABLE_WARNING_GCC(type-limits)
 
@@ -79,6 +80,7 @@ ENABLE_WARNING_CLANG(sign-conversion)
 
 ENABLE_WARNING_GCC(type-limits)
 ENABLE_WARNING_GCC(ignored-qualifiers)
+ENABLE_WARNING_GCC(unused-parameter)
 ENABLE_WARNING_GCC(pedantic)
 
 ENABLE_WARNING_MSVC(4100) // Unreferenced formal parameter
