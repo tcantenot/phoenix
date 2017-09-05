@@ -1,17 +1,30 @@
+add_subdirectory(core)
+add_subdirectory(demos)
+#add_subdirectory(tools)
+
 ################
 ##  Executable 
 ################
 
-set(PHOENIX_SOURCE_FILES main.cpp)   # Always list the files explicitly
-set(PHOENIX_INCLUDE_FILES)                  # In this case we don't have headers, but always list them so that they appear in the IDE
+# Always list the files explicitly
+set(PHOENIX_SOURCE_FILES main.cpp)
 
-add_executable(Phoenix ${PHOENIX_SOURCE_FILES} ${PHOENIX_INCLUDE_FILES})
+add_executable(Phoenix ${PHOENIX_SOURCE_FILES})
 target_link_libraries(Phoenix
-    #PUBLIC # Useful for libraries, see https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html for more details about transitive usage requirements.
+    PUBLIC # Useful for libraries, see https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html for more details about transitive usage requirements.
         #libraries/targets to link when linking this library
         #this will automatically setup the needed flags and dependencies when linking against this target
+		px::core
     PRIVATE # The following libraries are only linked for this target, and its flags/dependencies will not be used when linking against this target
-        general ext::fmt ext::spdlog ext::glfw ext::glew_static ext::imgui ext::zlib ext::gli# It is possible to link some libraries for debug or optimized builds only
+        general
+			ext::fmt
+			ext::spdlog
+			ext::glfw
+			ext::glew_static
+			ext::imgui
+			ext::zlib
+			ext::gli 
+		#It is possible to link some libraries for debug or optimized builds only
         #debug DEBUGLIBS
         #optimized RELEASELIBS
 )
@@ -28,7 +41,3 @@ run_fixup(Phoenix "" "") # Copy dependencies next to the executable (DLLs for ex
 # Setup our project as the startup project for Visual so that people don't need to do it manually
 set_directory_properties(PROPERTIES VS_STARTUP_PROJECT Phoenix)
 
-
-add_subdirectory(core)
-add_subdirectory(demos)
-#add_subdirectory(tools)
