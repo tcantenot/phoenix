@@ -72,7 +72,7 @@ DISABLE_WARNING_CLANG(sign-conversion)
 DISABLE_WARNING_CLANG(ignored-qualifiers)
 DISABLE_WARNING_CLANG(shadow-field-in-constructor)
 DISABLE_WARNING_CLANG(shadow)
-DISABLE_WARNING_CLANGNG(extra-semi)
+DISABLE_WARNING_CLANG(extra-semi)
 DISABLE_WARNING_CLANG(unused-variable)
 DISABLE_WARNING_CLANG(unused-parameter)
 
