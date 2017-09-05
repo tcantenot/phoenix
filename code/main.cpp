@@ -75,9 +75,13 @@ DISABLE_WARNING_CLANG(shadow)
 DISABLE_WARNING_CLANG(extra-semi)
 DISABLE_WARNING_CLANG(unused-variable)
 DISABLE_WARNING_CLANG(unused-parameter)
+DISABLE_WARNING_CLANG(deprecated)
+DISABLE_WARNING_CLANG(old-style-cast)
 
 #include <gli/gli.hpp>
 
+ENABLE_WARNING_CLANG(old-style-cast)
+ENABLE_WARNING_CLANG(deprecated)
 ENABLE_WARNING_CLANG(unused-parameter)
 ENABLE_WARNING_CLANG(unused-variable)
 ENABLE_WARNING_CLANG(extra-semi)
