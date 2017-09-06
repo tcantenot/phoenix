@@ -6,6 +6,8 @@
 #include <fmt/format.h>
 #include <Config/CompilerWarnings.hpp>
 
+DISABLE_WARNING_CLANG(unknown-pragmas)
+
 DISABLE_WARNING_MSVC(4201) // Nameless struct/union
 DISABLE_WARNING_MSVC(4309) // 'static_cast': truncation of constant value
 DISABLE_WARNING_MSVC(4458) // Declaration of 'x' hides class member
@@ -58,6 +60,7 @@ ENABLE_WARNING_MSVC(4458) // Declaration of 'x' hides class member
 ENABLE_WARNING_MSVC(4309) // 'static_cast': truncation of constant value
 ENABLE_WARNING_MSVC(4201) // Nameless struct/union
 
+ENABLE_WARNING_CLANG(unknown-pragmas)
 
 // This should be in the headers
 
