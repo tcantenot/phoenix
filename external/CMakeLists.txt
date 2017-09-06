@@ -57,7 +57,7 @@ add_library(ext::stb ALIAS stb)
 
 # zlib
 add_subdirectory(zlib EXCLUDE_FROM_ALL)
-add_library(ext::zlib ALIAS zlib)
+add_library(ext::zlib ALIAS zlibstatic)
 
 
 # imgui
@@ -87,7 +87,7 @@ set_target_properties(
 	fmt
 	libglew_static
 	glfw
-	zlib
+	zlibstatic
 	imgui
 	assimp
 	PROPERTIES FOLDER "external"
