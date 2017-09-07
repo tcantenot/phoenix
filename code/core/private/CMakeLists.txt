@@ -1,0 +1,3 @@
+add_subdirectory(Config)
+
+set(PX_CORE_SOURCE_FILES ${PX_CORE_SOURCE_FILES} PARENT_SCOPE)
